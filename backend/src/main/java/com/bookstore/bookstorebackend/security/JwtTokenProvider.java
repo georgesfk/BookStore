@@ -31,11 +31,11 @@ public class JwtTokenProvider {
         SecretKey key = Keys.hmacShaKeyFor(jwtSecret.getBytes(StandardCharsets.UTF_8));
 
         return Jwts.builder()
-                .subject(userPrincipal.getUsername())
-                .issuedAt(now)
-                .expiration(expiryDate)
-                .signWith(key, SignatureAlgorithm.HS512)
-                .compact();
+            .setSubject(userPrincipal.getUsername())
+            .setIssuedAt(now)
+            .setExpiration(expiryDate)
+            .signWith(key, SignatureAlgorithm.HS512)
+            .compact();
     }
 
     public String generateTokenFromUsername(String username) {
@@ -45,11 +45,11 @@ public class JwtTokenProvider {
         SecretKey key = Keys.hmacShaKeyFor(jwtSecret.getBytes(StandardCharsets.UTF_8));
 
         return Jwts.builder()
-                .subject(username)
-                .issuedAt(now)
-                .expiration(expiryDate)
-                .signWith(key, SignatureAlgorithm.HS512)
-                .compact();
+            .setSubject(username)
+            .setIssuedAt(now)
+            .setExpiration(expiryDate)
+            .signWith(key, SignatureAlgorithm.HS512)
+            .compact();
     }
 
     public String getUsernameFromJWT(String token) {

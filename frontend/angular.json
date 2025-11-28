@@ -63,8 +63,33 @@
             }
           },
           "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "bookstore-frontend:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "bookstore-frontend:build:production"
+            },
+            "development": {
+              "browserTarget": "bookstore-frontend:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
         }
-      }
-    }
-  }
+,
+"cli": {
+  "analytics": "c7330f50-1251-450d-a87a-be2eed499543"
+},
+"defaultProject": "bookstore-frontend",
+"cli": {
+  "analytics": "69414b9a-5486-43a0-b303-11a19c1574c7"
+},
+"cli": {
+  "analytics": "83d8ea7b-f262-42a9-8aea-27d7505f8e36"
+},
+"cli": {
+  "analytics": "5130af8a-8393-4c08-bb23-ef44b2559850"
 }

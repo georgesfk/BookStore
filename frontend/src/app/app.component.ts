@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet, RouterLink, Router } from '@angular/router';
 import { AuthService } from './services/auth.service';
+import { User } from './models/models';
 
 @Component({
   selector: 'app-root',
@@ -28,7 +29,7 @@ import { AuthService } from './services/auth.service';
               <a class="nav-link" routerLink="/register" routerLinkActive="active">Register</a>
             </li>
             <li class="nav-item" *ngIf="isAuthenticated">
-              <span class="nav-link">Welcome, {{ currentUser?.username }}</span>
+              <span class="nav-link">Welcome, {{ getCurrentUsername() }}</span>
             </li>
             <li class="nav-item" *ngIf="isAuthenticated">
               <a class="nav-link cursor-pointer" (click)="logout()">Logout</a>
@@ -56,7 +57,7 @@ import { AuthService } from './services/auth.service';
 })
 export class AppComponent {
   isAuthenticated = false;
-  currentUser = null;
+  currentUser: User | null = null;
 
   constructor(private authService: AuthService, private router: Router) {
     this.checkAuthStatus();
@@ -64,7 +65,11 @@ export class AppComponent {
 
   checkAuthStatus() {
     this.isAuthenticated = this.authService.isAuthenticated();
-    this.currentUser = this.authService.getCurrentUser();
+    this.currentUser = this.authService.getCurrentUser() as User | null;
+  }
+
+  getCurrentUsername(): string | undefined {
+    return this.currentUser ? this.currentUser.username : undefined;
   }
 
   logout() {
